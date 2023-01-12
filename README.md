@@ -15,5 +15,5 @@ DataCleaner4MRI -step 2 -root $root -regStrFun $regStrFun -regStrT1 $regStrT1
 ```
 ## Step 3 复制功能像和结构像到新路径，DPABI格式
 ```
-DataCleaner4MRI -step 3 -root $ dstRoot $dstRoot -regStrFun regStrFun -regStrT1 $regStrT1
+DataCleaner4MRI -step 3 -root $root -dstRoot $dstRoot -regStrFun $regStrFun -regStrT1 $regStrT1
 ```
