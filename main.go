@@ -22,19 +22,7 @@ func main() {
 	dcm2niixParameters := []string{"-f", *dcm2niixParF, "-d", *dcm2niixParD, "-x", *dcm2niixParX, "-i",
 		*dcm2niixParI, "-z", *dcm2niixParZ}
 	flag.Parse()
-	// Step 0 重命名
-	//	DataCleaner4MRI -step 0 -root .
 
-	// Step 1 格式转换
-	// 输入 根路径，并发数, dcm2niix 参数
-	// 数据组织格式 根路径/组别/被试
-	//DataCleaner4MRI -step 1 -root .
-
-	// Step 2 功能像和结构像检查
-	//DataCleaner4MRI -step 2 -root . -regStrFun Fun.nii -regStrT1 T1.nii
-
-	// Step 3 复制功能像和结构像到新路径，DPABI格式
-	//DataCleaner4MRI -step 3 -root . dstRoot ../DPABI -regStrFun Fun.nii -regStrT1 T1.nii
 	switch *step {
 	case 0:
 		RenameSubjectFolder(*root, "rename.csv")
