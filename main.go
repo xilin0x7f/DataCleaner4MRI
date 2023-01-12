@@ -4,7 +4,9 @@
  */
 package main
 
-import "flag"
+import (
+	"flag"
+)
 
 func main() {
 	step := flag.Int("step", -1, "0: 重命名, 1: 格式转换, 2: 检查, 3：复件文件")

@@ -25,8 +25,10 @@ func RenameSubjectFolder(root, renameFile string) {
 		idx := 0
 		for _, subject := range subjects {
 			originPath := filepath.Join(root, group.Name(), subject.Name())
-			newPath := filepath.Join(root, group.Name(), fmt.Sprintf("%03d%v", idx, matchReg.MatchString(subject.Name())))
-			_, _ = file.WriteString(originPath + "," + newPath)
+			newPath := filepath.Join(root, group.Name(), fmt.Sprintf("%03d%v", idx, matchReg.FindString(subject.Name())))
+			_, _ = file.WriteString(originPath + "," + newPath + "\n")
+			_ = os.Rename(originPath, newPath)
+			idx++
 		}
 	}
 }

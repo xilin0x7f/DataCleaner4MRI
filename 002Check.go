@@ -12,8 +12,8 @@ import (
 )
 
 func CheckFile(regStrFun, regStrT1, root string) ([][]string, [][]string) {
-	regFun, _ := regexp.Compile(regStrFun)
-	regT1, _ := regexp.Compile(regStrT1)
+	regFun := regexp.MustCompile(regStrFun)
+	regT1 := regexp.MustCompile(regStrT1)
 	groups, _ := os.ReadDir(root)
 	var resultsFun [][]string
 	var resultsT1 [][]string
