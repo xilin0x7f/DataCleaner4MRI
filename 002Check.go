@@ -1,6 +1,6 @@
 /*
 * @Author: xilin0x7f
-* @Date:   2023/1/12 15:37
+* @Date:   2023/1/20 13:01
  */
 package main
 
@@ -45,6 +45,8 @@ func CheckFile(regStrFun, regStrT1, root string) ([][]string, [][]string) {
 			}
 			if len(filesFunReg) != 1 || len(filesT1Reg) != 1 {
 				fmt.Println(fmt.Sprintf("Please check %v group %v subject Fun and T1 image", group.Name(), subject.Name()))
+				fmt.Println(fmt.Sprintf("Group %v subject %v has %v Fun images.", group.Name(), subject.Name(), len(filesFunReg)))
+				fmt.Println(fmt.Sprintf("Group %v subject %v has %v T1 images.", group.Name(), subject.Name(), len(filesT1Reg)))
 			} else {
 				_ = funCSVWriter.Write([]string{root, group.Name(), subject.Name(), filesFunReg[0]})
 				funCSVWriter.Flush()
