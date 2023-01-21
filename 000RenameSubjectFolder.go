@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 )
 
 func RenameSubjectFolder(root, renameFile string) {
@@ -25,7 +26,8 @@ func RenameSubjectFolder(root, renameFile string) {
 		idx := 0
 		for _, subject := range subjects {
 			originPath := filepath.Join(root, group.Name(), subject.Name())
-			newPath := filepath.Join(root, group.Name(), fmt.Sprintf("%03d%v", idx, matchReg.FindString(subject.Name())))
+			subjectName := strings.Replace(subject.Name(), "-", "_", -1)
+			newPath := filepath.Join(root, group.Name(), fmt.Sprintf("%03d%v", idx, matchReg.FindString(subjectName)))
 			_, _ = file.WriteString(originPath + "," + newPath + "\n")
 			_ = os.Rename(originPath, newPath)
 			idx++
