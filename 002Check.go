@@ -1,8 +1,8 @@
-/*
-* @Author: xilin0x7f
-* @Date:   2023/1/20 13:01
- */
 package main
+
+/*
+@Author: xilin0x7f, https://github.com/xilin0x7f
+*/
 
 import (
 	"encoding/csv"
