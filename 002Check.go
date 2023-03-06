@@ -61,9 +61,15 @@ func CheckFile(regStrFun, regStrT1, root, z string) ([][]string, [][]string) {
 			} else {
 				_ = funCSVWriter.Write([]string{root, group.Name(), subject.Name(), filesFunReg[0]})
 				funCSVWriter.Flush()
+				resultsFunJson = append(resultsFunJson, filepath.Join(root, group.Name(), subject.Name(),
+					filesFunReg[0][:len(filesFunReg[0])-3]+"json"))
 				resultsFun = append(resultsFun, []string{root, group.Name(), subject.Name(), filesFunReg[0]})
+
 				_ = t1CSVWriter.Write([]string{root, group.Name(), subject.Name(), filesT1Reg[0]})
 				t1CSVWriter.Flush()
+				t1Origin := strings.Replace(filesT1Reg[0], "_Crop_1", "", -1)
+				resultsT1Json = append(resultsT1Json, filepath.Join(root, group.Name(), subject.Name(),
+					t1Origin[:len(t1Origin)-3]+"json"))
 				resultsT1 = append(resultsT1, []string{root, group.Name(), subject.Name(), filesT1Reg[0]})
 			}
 			for funIdx := range filesFunReg {
