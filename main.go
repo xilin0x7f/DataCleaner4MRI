@@ -21,9 +21,9 @@ func main() {
 	dcm2niixParX := flag.String("x", "y", "dcm2niix -x")
 	dcm2niixParI := flag.String("i", "y", "dcm2niix -i")
 	dcm2niixParZ := flag.String("z", "n", "dcm2niix -z")
+	flag.Parse()
 	dcm2niixParameters := []string{"-f", *dcm2niixParF, "-d", *dcm2niixParD, "-x", *dcm2niixParX, "-i",
 		*dcm2niixParI, "-z", *dcm2niixParZ}
-	flag.Parse()
 
 	switch *step {
 	case 0:
@@ -31,9 +31,9 @@ func main() {
 	case 1:
 		Dcm2niixConcurrent(*root, *n, dcm2niixParameters...)
 	case 2:
-		CheckFile(*regStrFun, *regStrT1, *root)
+		CheckFile(*regStrFun, *regStrT1, *root, *dcm2niixParZ)
 	case 3:
-		funFiles, t1Files := CheckFile(*regStrFun, *regStrT1, *root)
+		funFiles, t1Files := CheckFile(*regStrFun, *regStrT1, *root, *dcm2niixParZ)
 		CopyFile2DPABIFormat(funFiles, t1Files, *dstRoot)
 	}
 }

@@ -18,7 +18,11 @@ import (
 	"strings"
 )
 
-func CheckFile(regStrFun, regStrT1, root string) ([][]string, [][]string) {
+func CheckFile(regStrFun, regStrT1, root, z string) ([][]string, [][]string) {
+	postN := 3
+	if z == "y" {
+		postN = 6
+	}
 	regFun := regexp.MustCompile(regStrFun)
 	regT1 := regexp.MustCompile(regStrT1)
 	var resultsFunJson, resultsT1Json []string
@@ -57,17 +61,21 @@ func CheckFile(regStrFun, regStrT1, root string) ([][]string, [][]string) {
 			} else {
 				_ = funCSVWriter.Write([]string{root, group.Name(), subject.Name(), filesFunReg[0]})
 				funCSVWriter.Flush()
-				resultsFunJson = append(resultsFunJson, filepath.Join(root, group.Name(), subject.Name(),
-					filesFunReg[0][:len(filesFunReg[0])-3]+"json"))
 				resultsFun = append(resultsFun, []string{root, group.Name(), subject.Name(), filesFunReg[0]})
-
 				_ = t1CSVWriter.Write([]string{root, group.Name(), subject.Name(), filesT1Reg[0]})
 				t1CSVWriter.Flush()
-				t1Origin := strings.Replace(filesT1Reg[0], "_Crop_1", "", -1)
-				resultsT1Json = append(resultsT1Json, filepath.Join(root, group.Name(), subject.Name(),
-					t1Origin[:len(t1Origin)-3]+"json"))
 				resultsT1 = append(resultsT1, []string{root, group.Name(), subject.Name(), filesT1Reg[0]})
 			}
+			for funIdx := range filesFunReg {
+				resultsFunJson = append(resultsFunJson, filepath.Join(root, group.Name(), subject.Name(),
+					filesFunReg[funIdx][:len(filesFunReg[funIdx])-postN]+"json"))
+			}
+			for t1Idx := range filesT1Reg {
+				t1Origin := strings.Replace(filesT1Reg[t1Idx], "_Crop_1", "", -1)
+				resultsT1Json = append(resultsT1Json, filepath.Join(root, group.Name(), subject.Name(),
+					t1Origin[:len(t1Origin)-postN]+"json"))
+			}
+
 		}
 	}
 	if err := WriteJson2XLSX(resultsFunJson, filepath.Join(root, "Fun.xlsx"), "Sheet1", "A"); err != nil {
