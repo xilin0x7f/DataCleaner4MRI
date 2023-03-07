@@ -6,6 +6,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 )
 
 func main() {
@@ -36,4 +37,5 @@ func main() {
 		funFiles, t1Files := CheckFile(*regStrFun, *regStrT1, *root, *dcm2niixParZ)
 		CopyFile2DPABIFormat(funFiles, t1Files, *dstRoot)
 	}
+	fmt.Println("\n祝君好运！！！")
 }
