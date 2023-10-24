@@ -121,7 +121,7 @@ func WriteJson2XLSX(filesName []string, dstFileName, sheetName, start string) er
 	for idx := range res {
 		res[idx] = make([]interface{}, len(keys)+1)
 	}
-	res[0][0] = ""
+	res[0][0] = "file"
 	for idx, key := range keys {
 		res[0][idx+1] = key
 	}

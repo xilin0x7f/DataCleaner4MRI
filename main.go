@@ -22,9 +22,12 @@ func main() {
 	dcm2niixParX := flag.String("x", "y", "dcm2niix -x")
 	dcm2niixParI := flag.String("i", "y", "dcm2niix -i")
 	dcm2niixParZ := flag.String("z", "n", "dcm2niix -z")
+	dcm2niixParBA := flag.String("ba", "n", "dcm2niix -ba")
 	flag.Parse()
 	dcm2niixParameters := []string{"-f", *dcm2niixParF, "-d", *dcm2niixParD, "-x", *dcm2niixParX, "-i",
-		*dcm2niixParI, "-z", *dcm2niixParZ}
+		*dcm2niixParI, "-z", *dcm2niixParZ, "-ba", *dcm2niixParBA}
+
+	//dcm2niixParameters = []string{"-b", "C:\\Apps\\MRIcron\\dcm2niigui.ini"}
 
 	switch *step {
 	case 0:
